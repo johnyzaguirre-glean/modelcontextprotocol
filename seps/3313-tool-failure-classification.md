@@ -1,11 +1,11 @@
-# SEP-0000: Structured Tool-Failure Classification (`ToolFailure`)
+# SEP-3313: Structured Tool-Failure Classification (`ToolFailure`)
 
 - **Status**: Draft
 - **Type**: Standards Track
 - **Created**: 2026-08-27
 - **Author(s)**: John Zaguirre (@johnyzaguirre-glean)
 - **Sponsor**: None (seeking sponsor)
-- **PR**: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/0000
+- **PR**: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3313
 
 ## Abstract
 
