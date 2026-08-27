@@ -155,10 +155,10 @@ inherited `ResultMetaObject` type).
 RECOMMENDED so common cases interoperate out of the box, grouped by
 `class`:
 
-| `class`       | `code`                                                             |
-| ------------- | ------------------------------------------------------------------ |
-| `capability`  | `capability_unsupported`, `resource_not_found`, `invalid_input`    |
-| `reliability` | `retryable_transient_error`                                        |
+| `class`       | `code`                                                                         |
+| ------------- | ------------------------------------------------------------------------------ |
+| `capability`  | `capability_unsupported`, `resource_not_found`, `invalid_input`                |
+| `reliability` | `retryable_transient_error`                                                    |
 | `governance`  | `auth_required`, `permission_denied`, `policy_blocked`, `user_action_required` |
 
 Servers MAY define additional codes consistent with one of the three
@@ -193,7 +193,7 @@ fully additive and low-risk to adopt incrementally.
 **Why a `class` enum plus an open `code` string, rather than one closed
 enum?** An early proposal in the discussion used a single closed set of
 codes. @HarperZ9 pointed out that the proposed codes actually require
-different client *behavior* (stop-and-prompt vs. retry vs.
+different client _behavior_ (stop-and-prompt vs. retry vs.
 refuse-pending-approval), and that behavior dispatch should not depend on
 recognizing every possible code a server might emit. Splitting a small,
 closed `class` (behavior contract) from an open `code` (specific diagnosis)
@@ -211,17 +211,17 @@ extension at all.
 
 **Alternatives considered:**
 
-- *Encode classification in the JSON-RPC `Error.data` field instead.*
+- _Encode classification in the JSON-RPC `Error.data` field instead._
   Rejected: tool execution failures are explicitly required by the existing
   spec to travel as `CallToolResult.isError`, not as protocol-level errors,
   so the model can see and self-correct. Using `Error.data` would be
   inconsistent with that rule and would only apply to the narrower set of
   failures that are legitimately protocol-level (e.g. unknown tool).
-- *A single closed enum of failure codes.* Rejected per the `class`/`code`
+- _A single closed enum of failure codes._ Rejected per the `class`/`code`
   rationale above — a closed enum would need a spec revision every time a
   new failure shape emerged.
-- *Bundling retry/idempotency "contract" fields (caller keys, dedup
-  behavior, tri-state `idempotentHint`) into this proposal.* Out of scope.
+- _Bundling retry/idempotency "contract" fields (caller keys, dedup
+  behavior, tri-state `idempotentHint`) into this proposal._ Out of scope.
   [Discussion #3188](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3188)
   is actively developing a separate, more detailed retry-contract proposal;
   this SEP only reuses the existing `idempotentHint` as a gating condition
